@@ -48,7 +48,7 @@ def notes():
         currentDate = datetime.now()
 
         with sqlite3.connect(DATABASE) as conn:
-            conn.execute('INSERT INTO notes (title, bodytext, currentDate) VALUES (?, ?, ?)', (title, bodytext, currentDate))
+            conn.execute('INSERT INTO notes (title, bodytext, date) VALUES (?, ?, ?)', (title, bodytext, currentDate))
             conn.commit()
 
             return redirect(url_for('notes'))
