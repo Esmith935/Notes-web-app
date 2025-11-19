@@ -9,10 +9,11 @@
 <body>
     <h1>Your Notes</h1>
 
-    <nav class="topnav">
-        <a href="home.html">Home</a>
-        <a href="notes.html">Notes</a>
-        <a href="about.html">About</a>
+ <nav class="topnav">
+        <a href="{{ url_for('home.html') }}">Home</a>
+        <a href="{{ url_for('notes.html') }}">Notes</a>
+        <a href="{{ url_for('about.html') }}">About</a>
+    
     </topnav>
     
     <h1> Create a note</h1>
