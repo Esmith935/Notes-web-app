@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
+import os
 from datetime import datetime
-
 
 app = Flask(__name__)
 app.secret_key = 'Password1' # -- Cybersecurity is my passion
 DATABASE = 'database.db'
+
+UPLOAD_FOLDER = os.path.join('static', 'uploads')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # -- Init db
 
