@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+import sqlite3
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -8,7 +10,17 @@ DATABASE = 'database.db'
 # -- Init db
 
 def init_db():
-    pass
+    with sqlite3.connect(DATABASE) as conn:
+        conn.execute('''
+                    CREATE TABLE IF NOT EXISTS notes (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        title TEXT NOT NULL,
+                        bodytext TEXT NOT NULL,
+                        date DATETIME NOT NULL
+                        )
+                    ''')
+        
+        conn.commit
 
 # -------- Main -------- #
 
@@ -28,10 +40,23 @@ def about():
 
 # -- Route: Notes
 
-@app.route('/notes')
+@app.route('/notes', methods=["GET", "POST"])
 def notes():
+    if request.method == "POST":
+        title = request.form['title']
+        bodytext = request.form['bodytext']
+        currentDate = datetime.now()
+
+        with sqlite3.connect(DATABASE) as conn:
+            conn.execute('INSERT INTO notes (title, bodytext, currentDate) VALUES (?, ?, ?)', (title, bodytext, currentDate))
+            conn.commit()
+
+            return redirect(url_for('notes'))
+        
+    with sqlite3.connect(DATABASE) as conn:
+        notes = conn.execute('SELECT * FROM notes').fetchall()
     
-    return render_template("notes.html")
+    return render_template("notes.html", notes=notes)
 
 if __name__ == '__main__':
     init_db()
