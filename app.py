@@ -10,12 +10,28 @@ DATABASE = 'database.db'
 def init_db():
     pass
 
-# -- Main -- #
+# -------- Main -------- #
+
+# -- Route: Home
 
 @app.route('/')
 def home():
     
     return render_template("home.html")
+
+# -- Route: About
+
+@app.route('/about')
+def about():
+    
+    return render_template("about.html")
+
+# -- Route: Notes
+
+@app.route('/notes')
+def notes():
+    
+    return render_template("notes.html")
 
 if __name__ == '__main__':
     init_db()
