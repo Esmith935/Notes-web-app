@@ -10,17 +10,22 @@
     <h1>Your Notes</h1>
 
  <nav class="topnav">
-        <a href="{{ url_for('home.html') }}">Home</a>
-        <a href="{{ url_for('notes.html') }}">Notes</a>
-        <a href="{{ url_for('about.html') }}">About</a>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('notes') }}">Notes</a>
+        <a href="{{ url_for('about') }}">About</a>
     
     </topnav>
     
-    <h1> Create a note</h1>
-        <form>
-            <label for="note-title">Note Title:</label>
-            <input type="text" id="note-title" placeholder="Title">
-        </form>
+    
+    <h2> Create a note</h2>
+
+    <form>
+        <label for="note-title">Note Title:
+
+        </label>
+            
+        <input type="text" id="note-title" placeholder="Title">
+    </form>
         
     
 </body>
