@@ -1,0 +1,39 @@
+/* Css for styles *\
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #010214;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #7b47f5;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #0682d4;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #010214;
+  color: white;
+}
+
+/* --- General Body and Background Styling --- */
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
