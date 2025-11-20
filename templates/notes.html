@@ -19,7 +19,7 @@
     
     <h2> Create a note</h2>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <label for="title">Note Title:
 
         </label>
@@ -47,7 +47,7 @@
             <h1>{{ note[1] }}</h1>
             <hr>
             <p>{{ note[2] }}</p>
-            <img src="{{ url_for('static', filename='uploads/' + (note[4] if note[4] else 'default.jpeg')) }}" alt="Avatar" width="50" height="50" style="vertical-align: middle ; border-radius: 50%;"></img>
+            <img src="{{ url_for('static', filename='uploads/' + (note[4] if note[4] else 'default.jpeg')) }}" width="400" height="300" alt="Image" style="vertical-align: middle ; border-radius: 15%;"></img>
             <hr>
             <p>{{ note[3] }}</p>
 

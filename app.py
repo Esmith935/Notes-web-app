@@ -10,7 +10,7 @@ DATABASE = 'database.db'
 
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-app.config['UPLOAD'] = UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
@@ -62,7 +62,7 @@ def notes():
         if avatar and allowed_file(avatar.filename):
             filename = secure_filename(avatar.filename)
             avatar_filename = f"{title}_{filename}"
-            avatar.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
+            avatar.save(os.path.join(UPLOAD_FOLDER, avatar_filename))
 
         with sqlite3.connect(DATABASE) as conn:
             conn.execute('INSERT INTO notes (title, bodytext, date, avatar) VALUES (?, ?, ?, ?)', (title, bodytext, currentDate, avatar_filename))
