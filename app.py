@@ -79,6 +79,15 @@ def notes():
     
     return render_template("notes.html", notes=notes)
 
+##@app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
+##def edit_note(note_id):
+##    with sqlite3.connect(DATABASE) as conn:
+##
+##        conn.execute('SELECT * FROM notes WHERE id = ?', (note_id,))
+##
+##        if not note_id:
+##            return 'note not found'
+
 @app.route('/delete_note/<int:note_id>', methods=['GET', 'POST'])
 def delete_note(note_id):
     if request.method == "POST":
