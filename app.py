@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import sqlite3
 import os
 from datetime import datetime
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = 'Password1' # -- Cybersecurity is my passion
@@ -11,6 +12,10 @@ UPLOAD_FOLDER = os.path.join('static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['UPLOAD'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # -- Init db
 
@@ -50,10 +55,17 @@ def notes():
     if request.method == "POST":
         title = request.form['title']
         bodytext = request.form['bodytext']
+        avatar = request.files.get('avatar')
+        avatar_filename = None
         currentDate = datetime.now()
 
+        if avatar and allowed_file(avatar.filename):
+            filename = secure_filename(avatar.filename)
+            avatar_filename = f"{title}_{filename}"
+            avatar.save(os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename))
+
         with sqlite3.connect(DATABASE) as conn:
-            conn.execute('INSERT INTO notes (title, bodytext, date) VALUES (?, ?, ?)', (title, bodytext, currentDate))
+            conn.execute('INSERT INTO notes (title, bodytext, date, avatar) VALUES (?, ?, ?, ?)', (title, bodytext, currentDate, avatar_filename))
             conn.commit()
 
             return redirect(url_for('notes'))

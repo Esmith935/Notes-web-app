@@ -32,6 +32,12 @@
 
         <input type="text" id="bodytext" name="bodytext" placeholder="Text" required><br>
 
+        <label for="avatar">Add Image:
+
+        </label>
+
+        <input type="file" id="avatar" name="avatar" accept="image/*">
+
         <input type="submit" value="Post">
     </form>
     <br>
@@ -41,8 +47,11 @@
             <h1>{{ note[1] }}</h1>
             <hr>
             <p>{{ note[2] }}</p>
+            <img src="{{ url_for('static', filename='uploads/' + (note[4] if note[4] else 'default.jpeg')) }}" alt="Avatar" width="50" height="50" style="vertical-align: middle ; border-radius: 50%;"></img>
             <hr>
             <p>{{ note[3] }}</p>
+
+
         </div>
     {% endfor %}
         
