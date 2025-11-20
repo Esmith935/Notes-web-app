@@ -15,16 +15,13 @@
         <a href="{{ url_for('notes') }}">Notes</a>
         <a href="{{ url_for('about') }}">About</a>
 
-        <dropdown>
-            <a href="#">Options</a>
-                <div class="dropdown-content">
-                    <buttoon onclick ="toggleDarkMode()">Toggle Dark Mode</button>
-                    <script>
-                        function toggleDarkMode() {
-                        document.body.classList.toggle("dark-mode"); }
-                    </script>
-                </div>
-        </dropdown>    
+        <div class="dropdown">
+            <button class="dropbtn">Theme</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="document.body.classList.remove('dark-mode'); return false;">Light Mode</a>
+                <a href="#" onclick="document.body.classList.add('dark-mode'); return false;">Dark Mode</a>
+            </div>
+        </div>
     
     </nav>
     
