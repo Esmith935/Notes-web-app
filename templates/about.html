@@ -10,11 +10,20 @@
 <body>
     <h1>About This App</h1> 
       
-    <nav class="topnav">
+       <div class="topnav">
         <a href="{{ url_for('home') }}">Home</a>
         <a href="{{ url_for('notes') }}">Notes</a>
         <a href="{{ url_for('about') }}">About</a>
+
+        <div class="dropdown">
+            <button class="dropbtn">Theme</button>
+            <div class="dropdown-content">
+                <a href="#" onclick="document.body.classList.remove('dark-mode'); return false;">Light Mode</a>
+                <a href="#" onclick="document.body.classList.add('dark-mode'); return false;">Dark Mode</a>
+            </div>
+        </div>
     
+    </div>
     </nav>
 
 
