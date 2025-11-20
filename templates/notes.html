@@ -55,7 +55,10 @@
             <h1>{{ note[1] }}</h1>
             <hr>
             <p>{{ note[2] }}</p>
+
+            {% if note[4] %}
             <img src="{{ url_for('static', filename='uploads/' + (note[4] if note[4] else 'default.jpeg')) }}" width="400" height="300" alt="Image" style="vertical-align: middle ; border-radius: 15%;"></img>
+            {% endif %}
             <hr>
             <p>{{ note[3] }}</p>
             <a href="{{ url_for('delete_note', note_id=note[0]) }}">Delete</a>
