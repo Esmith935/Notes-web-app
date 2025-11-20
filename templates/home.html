@@ -31,8 +31,11 @@
             <h1> {{ recent_note[1] }}</h1>
             <hr>
             <p> {{ recent_note[2] }} </p>
-            <hr>
+
+            {% if recent_note[4] %}
             <img src="{{ url_for('static', filename='uploads/' + (recent_note[4] if recent_note[4] else 'default.jpeg')) }}" width="400" height="300" alt="Image" style="vertical-align: middle ; border-radius: 15%;"></img>
+            {% endif %}
+            
             <hr>
             <p>Created: {{ recent_note[3] }}</p>
         </div>
