@@ -1,3 +1,4 @@
+from select import select
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
 import os
@@ -38,8 +39,11 @@ def init_db():
 
 @app.route('/')
 def home():
+    # Fetch the most recent note to display on home page
+    with sqlite3.connect(DATABASE) as conn:
+        recent_note = conn.execute('SELECT * FROM notes ORDER BY date DESC LIMIT 1').fetchone()
     
-    return render_template("home.html")
+    return render_template("home.html", recent_note=recent_note)
 
 # -- Route: About
 

@@ -17,10 +17,19 @@
     
     </nav>
     
+    <h2> Most Recent Note</h2>
+        {% if recent_note %}
+        <div class="container">
+            <h1> {{ recent_note[1] }}</h1>
+            <hr>
+            <p> {{ recent_note[2] }} </p>
+            <hr>
+            <p>Created: {{ recent_note[3] }}</p>
+        </div>
+    {% else %}
+        <p>No notes have been created yet. go to notes page to add some.</p>
+    {% endif %}
 
 
 </body>
-
-
-
 </html>
