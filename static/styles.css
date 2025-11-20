@@ -74,7 +74,7 @@ body {
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
+  display: all;
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
@@ -91,10 +91,10 @@ body {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {background-color: #000000;}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {display: ;}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;} 
