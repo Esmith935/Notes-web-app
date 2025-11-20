@@ -80,7 +80,7 @@ def notes():
     return render_template("notes.html", notes=notes)
 
 @app.route('/delete_note/<int:note_id>', methods=['GET', 'POST'])
-def delete_user(note_id):
+def delete_note(note_id):
     if request.method == "POST":
         with sqlite3.connect(DATABASE) as conn:
             conn.execute('DELETE FROM notes WHERE id = ?', (note_id,))
