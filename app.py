@@ -27,7 +27,8 @@ def init_db():
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         title TEXT NOT NULL,
                         bodytext TEXT NOT NULL,
-                        date DATETIME NOT NULL
+                        date DATETIME NOT NULL,
+                        avatar TEXT
                         )
                     ''')
         
@@ -79,14 +80,27 @@ def notes():
     
     return render_template("notes.html", notes=notes)
 
-##@app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
-##def edit_note(note_id):
-##    with sqlite3.connect(DATABASE) as conn:
-##
-##        conn.execute('SELECT * FROM notes WHERE id = ?', (note_id,))
-##
-##        if not note_id:
-##            return 'note not found'
+@app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
+def edit_note(note_id):
+    with sqlite3.connect(DATABASE) as conn:
+
+        note = conn.execute('SELECT * FROM notes WHERE id = ?', (note_id,)).fetchone
+        conn.commit()
+
+        if not note_id:
+            return 'note not found', 404
+        
+        if request.method == 'POST':
+            title = request.form['title']
+            bodytext = request.form['bodytext']
+
+            
+            conn.execute('UPDATE notes SET title = ?, bodytext = ? WHERE id = ?', (title, bodytext, note_id))
+            conn.commit()
+            
+            return redirect(url_for('notes'))
+    
+    return render_template('edit_note.html', note=note)
 
 @app.route('/delete_note/<int:note_id>', methods=['GET', 'POST'])
 def delete_note(note_id):

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Note</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-alignment: center;
+            margin: 40px;
+            background-color: #F7F4EA;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Note</h1>
+    <form method = "POST">
+        <label>Title</label>
+        <br>
+        <input type="text" name="title" value="{{ note [1]}}" required>
+        <br>
+        <br>
+        <br><label>Bodytext</label>
+        <br>
+        <input type="text" name="bodytext" value="{{ note [2]}}" required>
+        <br>
+        <br>
+        <button type="submit">Save Changes</button>
+    </form>
+    <br>
+    <a href="{{ url_for('notes') }}">Back to Notes</a>
+</body>
+</html>
